@@ -9,7 +9,11 @@ pipeline {
           }
         }
 
-        stage('build') {
+        stage('Maven3') {
+          agent any
+          environment {
+            maven = 'Maven3'
+          }
           steps {
             sh 'mvn clean install'
           }
