@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('checkout') {
-      steps {
-        echo 'hello'
+      parallel {
+        stage('checkout') {
+          steps {
+            echo 'hello'
+          }
+        }
+
+        stage('build') {
+          steps {
+            sh 'sh \'mvn clean install\''
+          }
+        }
+
       }
     }
 
